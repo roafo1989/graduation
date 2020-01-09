@@ -14,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public class AbstractBaseEntity implements HasId {
+public abstract class AbstractBaseEntity implements HasId {
 
     public static final int START_SEQ = 100000;
     @Id
