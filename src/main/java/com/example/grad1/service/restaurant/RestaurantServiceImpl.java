@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,12 +27,23 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant create(@NotNull Restaurant restaurant) {
-        return repository.save(restaurant);
+    public List<Restaurant> getAllWithLunches(LocalDate date) {
+        return repository.findAllWithLunches(date);
     }
+
     @Override
-    public void update(@NotNull Restaurant restaurant) {
-        checkNotFoundWithId(repository.save(restaurant),restaurant.getId());
+    public List<Restaurant> getAllForId(LocalDate date, int id){
+        return checkNotFoundWithId(repository.findAllWithLunchById(date, id),id);
+    }
+
+    @Override
+    public List<Restaurant> getAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Restaurant get(int id) {
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Restaurant not found by id " + id));
     }
 
     @Override
@@ -40,15 +52,12 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Restaurant get(int id) {
-        return checkNotFoundWithId(repository.findById(id).orElse(null), id);
+    public Restaurant create(@NotNull Restaurant restaurant) {
+        return repository.save(restaurant);
     }
-
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public List<Restaurant> getAll() {
-        return repository.findAll();
+    public Restaurant update(@NotNull Restaurant restaurant) {
+        repository.findById(restaurant.getId()).orElseThrow(() -> new EntityNotFoundException("Restaurant not found by id " + restaurant.getId()));
+        return checkNotFoundWithId(repository.save(restaurant), restaurant.getId());
     }
-
 }

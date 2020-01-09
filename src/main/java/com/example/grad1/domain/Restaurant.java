@@ -23,9 +23,6 @@ public class Restaurant extends AbstractNamedEntity {
     @OrderBy("name DESC")
     private List<Lunch> lunches;
 
-    @OneToMany(targetEntity = Voice.class, fetch = FetchType.LAZY, mappedBy = "restaurant")
-    @OrderBy("dateTime DESC")
-    private List<Voice> voices;
 
     public Restaurant(String name) {
         this(null, name);

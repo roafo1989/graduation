@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<User> getAll() {
+    public List<User> getAllWithLunches() {
         return repository.findAll();
     }
 

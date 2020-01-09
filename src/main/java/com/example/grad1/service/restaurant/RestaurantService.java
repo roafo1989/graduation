@@ -12,7 +12,7 @@ import java.util.List;
 public interface RestaurantService {
     Restaurant create(@NotNull Restaurant restaurant);
 
-    void update(@NotNull Restaurant restaurant);
+    Restaurant update(@NotNull Restaurant restaurant);
 
     void delete(int id);
 
@@ -20,6 +20,10 @@ public interface RestaurantService {
     Restaurant get(int id);
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    List<Restaurant> getAllWithLunches(LocalDate date);
+
     List<Restaurant> getAll();
+
+    List<Restaurant> getAllForId(LocalDate date, int id);
 
 }
