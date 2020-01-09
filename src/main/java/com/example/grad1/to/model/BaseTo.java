@@ -1,4 +1,4 @@
-package com.example.grad1.to;
+package com.example.grad1.to.model;
 
 import com.example.grad1.domain.baseModel.HasId;
 

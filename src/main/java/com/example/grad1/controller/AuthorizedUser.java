@@ -2,21 +2,19 @@ package com.example.grad1.controller;
 
 
 import com.example.grad1.domain.User;
-import com.example.grad1.to.UserTo;
-import com.example.grad1.util.UserUtil;
-
-import javax.persistence.criteria.CriteriaBuilder;
+import com.example.grad1.to.converter.UserUtil;
+import com.example.grad1.to.model.UserTo;
 
 
-public class AuthorizedUser extends User{
+public class AuthorizedUser extends org.springframework.security.core.userdetails.User {
 private static final long serialVersionUID = 1L;
 
 private UserTo userTo;
 
-/*public AuthorizedUser(User user) {
+public AuthorizedUser(User user) {
         super(user.getEmail(), user.getPassword(), user.getRoles());
         this.userTo = UserUtil.asTo(user);
-        }*/
+        }
 
 public Integer getId() {
         return userTo.getId();

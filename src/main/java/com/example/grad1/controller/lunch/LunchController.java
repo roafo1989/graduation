@@ -2,8 +2,7 @@ package com.example.grad1.controller.lunch;
 
 import com.example.grad1.domain.Lunch;
 import com.example.grad1.service.lunch.LunchService;
-import com.example.grad1.to.LunchTo;
-import org.slf4j.LoggerFactory;
+import com.example.grad1.to.model.LunchTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.logging.Logger;
 
 import static com.example.grad1.controller.lunch.LunchController.REST_URL;
 import static com.example.grad1.util.ValidationUtil.assureIdConsistent;

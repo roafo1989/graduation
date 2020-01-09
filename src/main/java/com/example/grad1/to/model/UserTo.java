@@ -1,4 +1,4 @@
-package com.example.grad1.to;
+package com.example.grad1.to.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,11 +17,13 @@ public class UserTo extends BaseTo {
 
     @NotBlank
     @Size(min = 2, max = 100)
+    @SafeHtml
     private String name;
 
     @Email
     @NotBlank
     @Size(max = 100)
+    @SafeHtml
     private String email;
 
     @Size(min = 5, max = 32)

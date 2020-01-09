@@ -1,7 +1,7 @@
 package com.example.grad1.service.voice;
 
 import com.example.grad1.domain.Restaurant;
-import com.example.grad1.to.VoiceTo;
+import com.example.grad1.to.model.VoiceTo;
 import org.springframework.transaction.annotation.Transactional;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;

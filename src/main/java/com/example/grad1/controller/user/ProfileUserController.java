@@ -1,10 +1,12 @@
 package com.example.grad1.controller.user;
 
+import com.example.grad1.controller.AuthorizedUser;
 import com.example.grad1.domain.User;
-import com.example.grad1.to.UserTo;
+import com.example.grad1.to.model.UserTo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -28,7 +30,7 @@ public class ProfileUserController extends AbstractUserController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-/*    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public User get(@AuthenticationPrincipal AuthorizedUser authorizedUser) {
         return super.get(authorizedUser.getId());
     }
@@ -43,5 +45,5 @@ public class ProfileUserController extends AbstractUserController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@AuthenticationPrincipal AuthorizedUser authorizedUser) {
         super.delete(authorizedUser.getUserTo().getId());
-    }*/
+    }
 }

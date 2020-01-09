@@ -1,14 +1,12 @@
-package com.example.grad1.to;
+package com.example.grad1.to.model;
 
 import com.example.grad1.domain.Lunch;
-import com.example.grad1.domain.Voice;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
