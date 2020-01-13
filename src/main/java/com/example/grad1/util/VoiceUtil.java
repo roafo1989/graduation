@@ -1,8 +1,8 @@
-package com.example.grad1.to.converter;
+package com.example.grad1.util;
 
 
 import com.example.grad1.domain.Voice;
-import com.example.grad1.to.model.VoiceTo;
+import com.example.grad1.to.VoiceTo;
 
 import java.util.List;
 import java.util.stream.Collectors;

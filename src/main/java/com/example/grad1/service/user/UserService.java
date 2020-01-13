@@ -1,7 +1,7 @@
 package com.example.grad1.service.user;
 
 import com.example.grad1.domain.User;
-import com.example.grad1.to.model.UserTo;
+import com.example.grad1.to.UserTo;
 import java.util.List;
 
 public interface UserService {

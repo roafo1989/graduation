@@ -2,7 +2,7 @@ package com.example.grad1.controller.voice;
 
 import com.example.grad1.domain.Restaurant;
 import com.example.grad1.service.voice.VoiceService;
-import com.example.grad1.to.model.VoiceTo;
+import com.example.grad1.to.VoiceTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 
-import static com.example.grad1.controller.SecurityUtil.authUserId;
+import static com.example.grad1.controller.security.SecurityUtil.authUserId;
 import static com.example.grad1.controller.voice.VoiceUserController.REST_URL;
 
 

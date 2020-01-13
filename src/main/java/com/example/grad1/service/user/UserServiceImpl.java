@@ -1,15 +1,14 @@
 package com.example.grad1.service.user;
-import com.example.grad1.controller.AuthorizedUser;
+import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.User;
 import com.example.grad1.repository.UserRepository;
-import com.example.grad1.to.model.UserTo;
+import com.example.grad1.to.UserTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -17,8 +16,6 @@ import org.springframework.util.Assert;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-import static com.example.grad1.to.converter.UserUtil.prepareToSave;
-import static com.example.grad1.to.converter.UserUtil.updateFromTo;
 import static com.example.grad1.util.ValidationUtil.checkNotFound;
 import static com.example.grad1.util.ValidationUtil.checkNotFoundWithId;
 
@@ -29,13 +26,9 @@ import static com.example.grad1.util.ValidationUtil.checkNotFoundWithId;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository repository;
-
-    private PasswordEncoder passwordEncoder;
-
     @Autowired
-    public UserServiceImpl(UserRepository repository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository repository) {
         this.repository = repository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -62,28 +55,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User create(User user) {
-        Assert.notNull(user, "user must not be null");
-        return repository.save(prepareToSave(user, passwordEncoder));
+        return null;
     }
 
     @Override
     public void update(User user) {
-        checkNotFoundWithId(repository.save(prepareToSave(user, passwordEncoder)), user.getId());
+
     }
 
     @Override
-    public void update(UserTo userTo) {
-        User user = updateFromTo(get(userTo.getId()), userTo);
-        repository.save(prepareToSave(user, passwordEncoder));
+    public void update(UserTo user) {
+
     }
 
     @Override
-    public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) {
         User user = repository.getByEmail(email.toLowerCase());
+        System.out.println("service: loadUserByUsername: " + user.getEmail() + "; "+ user.getPassword() + "; " + user.getRoles());
         if (user == null) {
-            throw new UsernameNotFoundException("User " + email + " not found");
+            throw new UsernameNotFoundException("User " + email + " is not found");
         }
         return new AuthorizedUser(user);
+
     }
 }
 

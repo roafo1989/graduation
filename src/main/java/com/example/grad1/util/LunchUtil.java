@@ -1,7 +1,7 @@
-package com.example.grad1.to.converter;
+package com.example.grad1.util;
 
 import com.example.grad1.domain.Lunch;
-import com.example.grad1.to.model.LunchTo;
+import com.example.grad1.to.LunchTo;
 
 import java.util.List;
 import java.util.stream.Collectors;

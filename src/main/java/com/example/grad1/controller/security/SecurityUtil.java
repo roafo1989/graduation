@@ -1,4 +1,4 @@
-package com.example.grad1.controller;
+package com.example.grad1.controller.security;
 
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.Authentication;

@@ -2,12 +2,11 @@ package com.example.grad1.controller.user;
 
 import com.example.grad1.domain.User;
 import com.example.grad1.service.user.UserService;
-import com.example.grad1.to.model.UserTo;
-import com.example.grad1.to.converter.UserUtil;
+import com.example.grad1.to.UserTo;
+import com.example.grad1.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
 
 import static com.example.grad1.util.ValidationUtil.assureIdConsistent;
 import static com.example.grad1.util.ValidationUtil.checkNew;
@@ -43,10 +42,10 @@ public abstract class AbstractUserController {
         service.update(user);
     }
 
-    public void update(UserTo userTo, int id) {
+/*    public void update(UserTo userTo, int id) {
         assureIdConsistent(userTo, id);
         service.update(userTo);
-    }
+    }*/
 
     User getByEmail(String email) {
         return service.getByEmail(email);
