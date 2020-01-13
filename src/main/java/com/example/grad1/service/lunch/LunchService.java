@@ -1,7 +1,7 @@
 package com.example.grad1.service.lunch;
 
 import com.example.grad1.domain.Lunch;
-import com.example.grad1.to.LunchTo;
+import com.example.grad1.to.lunchTo.LunchTo;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

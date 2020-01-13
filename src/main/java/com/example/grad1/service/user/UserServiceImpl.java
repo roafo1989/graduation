@@ -2,7 +2,7 @@ package com.example.grad1.service.user;
 import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.User;
 import com.example.grad1.repository.UserRepository;
-import com.example.grad1.to.UserTo;
+import com.example.grad1.to.userTo.UserTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

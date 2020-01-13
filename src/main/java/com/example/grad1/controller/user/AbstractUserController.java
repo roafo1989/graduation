@@ -2,8 +2,8 @@ package com.example.grad1.controller.user;
 
 import com.example.grad1.domain.User;
 import com.example.grad1.service.user.UserService;
-import com.example.grad1.to.UserTo;
-import com.example.grad1.util.UserUtil;
+import com.example.grad1.to.userTo.UserTo;
+import com.example.grad1.to.userTo.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

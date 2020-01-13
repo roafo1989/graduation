@@ -2,7 +2,7 @@ package com.example.grad1.controller.voice;
 
 import com.example.grad1.domain.Restaurant;
 import com.example.grad1.service.voice.VoiceService;
-import com.example.grad1.to.VoiceTo;
+import com.example.grad1.to.voiceTo.VoiceTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

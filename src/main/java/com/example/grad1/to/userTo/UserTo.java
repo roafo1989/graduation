@@ -1,5 +1,6 @@
-package com.example.grad1.to;
+package com.example.grad1.to.userTo;
 
+import com.example.grad1.to.BaseTo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

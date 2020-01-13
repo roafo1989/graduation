@@ -1,7 +1,7 @@
 package com.example.grad1.controller.user;
 
 import com.example.grad1.domain.User;
-import com.example.grad1.to.UserTo;
+import com.example.grad1.to.userTo.UserTo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,8 @@
-package com.example.grad1.to;
+package com.example.grad1.to.lunchTo;
 
 import com.example.grad1.domain.Lunch;
 import com.example.grad1.domain.Voice;
+import com.example.grad1.to.BaseTo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

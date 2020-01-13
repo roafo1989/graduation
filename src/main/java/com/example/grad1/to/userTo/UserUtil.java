@@ -1,9 +1,8 @@
-package com.example.grad1.util;
+package com.example.grad1.to.userTo;
 
 import com.example.grad1.domain.Role;
 import com.example.grad1.domain.User;
-import com.example.grad1.to.UserTo;
-import org.springframework.util.StringUtils;
+import com.example.grad1.to.userTo.UserTo;
 
 
 public class UserUtil {
