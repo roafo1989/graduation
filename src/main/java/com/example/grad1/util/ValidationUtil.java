@@ -4,11 +4,14 @@ import com.example.grad1.domain.baseModel.AbstractBaseEntity;
 import com.example.grad1.domain.baseModel.HasId;
 import com.example.grad1.util.exception.IllegalRequestDataException;
 import com.example.grad1.util.exception.NotFoundException;
+import com.example.grad1.util.exception.VoteTimeViolationException;
 import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalTime;
 
 public class ValidationUtil {
+    private static LocalTime DEADLINE_TIME = LocalTime.of(11, 00);
 
     private ValidationUtil() {
     }
@@ -32,7 +35,7 @@ public class ValidationUtil {
         }
     }
 
-    public static void checkNew(AbstractBaseEntity bean) {
+    public static void checkNew(HasId bean) {
         if (!bean.isNew()) {
             throw new IllegalRequestDataException(bean + " must be new (id = null)");
         }
@@ -55,6 +58,22 @@ public class ValidationUtil {
         }
         return result;
     }
+
+    public static void checkTimeForOperations(LocalTime time) {
+        if (time.isAfter(DEADLINE_TIME)) {
+            throw new VoteTimeViolationException("Voting is over for today");
+        }
+    }
+
+    public static LocalTime getDeadLineTime() {
+        return DEADLINE_TIME;
+    }
+
+    public static void setDeadLineTime(LocalTime time) {
+        DEADLINE_TIME = time;
+    }
+
+
 
     public static String getMessage(Throwable e) {
         return e.getLocalizedMessage() != null ? e.getLocalizedMessage() : e.getClass().getName();

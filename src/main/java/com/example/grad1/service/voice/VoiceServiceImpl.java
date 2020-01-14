@@ -6,9 +6,8 @@ import com.example.grad1.repository.RestaurantRepository;
 import com.example.grad1.repository.UserRepository;
 import com.example.grad1.repository.VoiceRepository;
 import com.example.grad1.to.voiceTo.VoiceTo;
-import com.example.grad1.util.DateTimeUtil;
 import com.example.grad1.to.voiceTo.VoiceUtil;
-import com.example.grad1.util.exception.DoubleViolationException;
+import com.example.grad1.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -40,13 +39,11 @@ public class VoiceServiceImpl implements VoiceService {
         LocalDateTime dateTime = LocalDateTime.now();
         Voice oldVoice = voiceRepository.getMyVoice(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX),userId);
         Voice created = new Voice(dateTime,restaurantRepository.getOne(restaurantId),userRepository.getOne(userId));
-        if(DateTimeUtil.isDuring(dateTime.toLocalTime())){
-            if(oldVoice != null){
-                voiceRepository.delete(oldVoice);
-            }
-            return VoiceUtil.asTo(voiceRepository.save(created));
+        ValidationUtil.checkTimeForOperations(dateTime.toLocalTime());
+        if(oldVoice != null){
+            voiceRepository.delete(oldVoice);
         }
-        else throw new DoubleViolationException("Voted is finished today");
+        return VoiceUtil.asTo(voiceRepository.save(created));
     }
 
     //By User
