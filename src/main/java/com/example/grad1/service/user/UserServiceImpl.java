@@ -18,6 +18,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 import static com.example.grad1.to.userTo.UserUtil.prepareToSave;
+import static com.example.grad1.to.userTo.UserUtil.updateFromTo;
 import static com.example.grad1.util.ValidationUtil.checkNotFound;
 import static com.example.grad1.util.ValidationUtil.checkNotFoundWithId;
 
@@ -62,18 +63,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void update(User user) {
-
+        Assert.notNull(user, "user must not be null");
+        checkNotFoundWithId(repository.save(prepareToSave(user, passwordEncoder)), user.getId());
     }
 
     @Override
-    public void update(UserTo user) {
-
+    public void update(UserTo userTo) {
+        User user = updateFromTo(get(userTo.getId()), userTo);
+        repository.save(prepareToSave(user, passwordEncoder));
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) {
         User user = repository.getByEmail(email.toLowerCase());
-        System.out.println("service: " + user.getName() + "; " + user.getRoles());
         if (user == null) {
             throw new UsernameNotFoundException("User " + email + " is not found");
         }

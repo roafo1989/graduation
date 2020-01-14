@@ -48,11 +48,6 @@ public class VoiceServiceImpl implements VoiceService {
         }
         else throw new DoubleViolationException("Voted is finished today");
     }
-    @Override
-    public Integer getId(String email){
-        return userRepository.getByEmail(email).getId();
-    }
-
 
     //By User
     @Override
