@@ -1,7 +1,7 @@
 package com.example.grad1.controller.security;
 import com.example.grad1.domain.User;
 import com.example.grad1.to.userTo.UserTo;
-
+import com.example.grad1.to.userTo.UserUtil;
 
 
 public class AuthorizedUser extends org.springframework.security.core.userdetails.User {
@@ -11,6 +11,7 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
 
         public AuthorizedUser(User user) {
                 super(user.getEmail(), user.getPassword(), user.getRoles());
+                this.userTo = UserUtil.asTo(user);
         }
 
         public int getId() {

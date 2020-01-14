@@ -1,6 +1,7 @@
 package com.example.grad1.util;
 
 import com.example.grad1.domain.baseModel.AbstractBaseEntity;
+import com.example.grad1.domain.baseModel.HasId;
 import com.example.grad1.util.exception.IllegalRequestDataException;
 import com.example.grad1.util.exception.NotFoundException;
 import org.slf4j.Logger;
@@ -37,7 +38,7 @@ public class ValidationUtil {
         }
     }
 
-    public static void assureIdConsistent(AbstractBaseEntity bean, int id) {
+    public static void assureIdConsistent(HasId bean, int id) {
         if (bean.isNew()) {
             bean.setId(id);
         } else if (bean.getId() != id) {

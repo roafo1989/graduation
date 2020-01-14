@@ -3,6 +3,8 @@ package com.example.grad1.to.userTo;
 import com.example.grad1.domain.Role;
 import com.example.grad1.domain.User;
 import com.example.grad1.to.userTo.UserTo;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 
 
 public class UserUtil {
@@ -22,10 +24,10 @@ public class UserUtil {
         return user;
     }
 
-/*    public static User prepareToSave(User user, PasswordEncoder passwordEncoder) {
+    public static User prepareToSave(User user, PasswordEncoder passwordEncoder) {
         String password = user.getPassword();
         user.setPassword(StringUtils.isEmpty(password) ? password : passwordEncoder.encode(password));
         user.setEmail(user.getEmail().toLowerCase());
         return user;
-    }*/
+    }
 }

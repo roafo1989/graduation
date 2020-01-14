@@ -1,11 +1,15 @@
 package com.example.grad1.controller.voice;
 
+import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.Restaurant;
+import com.example.grad1.domain.User;
 import com.example.grad1.service.voice.VoiceService;
 import com.example.grad1.to.voiceTo.VoiceTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -14,8 +18,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-
-import static com.example.grad1.controller.security.SecurityUtil.authUserId;
 import static com.example.grad1.controller.voice.VoiceUserController.REST_URL;
 
 
@@ -29,8 +31,8 @@ public class VoiceUserController {
     VoiceService service;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VoiceTo> create(@RequestParam ("restaurantId") int restaurantId){
-        VoiceTo created = service.create(authUserId(),restaurantId);
+    public ResponseEntity<VoiceTo> create(@RequestParam ("restaurantId") int restaurantId, @AuthenticationPrincipal AuthorizedUser authorizedUser){
+        VoiceTo created = service.create(authorizedUser.getId(),restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder
                 .fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -40,12 +42,12 @@ public class VoiceUserController {
     }
 //By User
     @GetMapping("/my-voice-today")
-    public VoiceTo getSelfToday(){
-        return service.getByUserId(authUserId(), LocalDateTime.now());
+    public VoiceTo getSelfToday(@AuthenticationPrincipal AuthorizedUser authorizedUser){
+        return service.getByUserId(authorizedUser.getId(), LocalDateTime.now());
     }
     @GetMapping("/my-history")
-    public List<VoiceTo> getSelfHistory(){
-        return service.getAllByUserId(authUserId());
+    public List<VoiceTo> getSelfHistory(@AuthenticationPrincipal AuthorizedUser authorizedUser){
+        return service.getAllByUserId(authorizedUser.getId());
     }
 
 //By Restaurant

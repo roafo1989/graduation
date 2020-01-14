@@ -42,10 +42,10 @@ public abstract class AbstractUserController {
         service.update(user);
     }
 
-/*    public void update(UserTo userTo, int id) {
+    public void update(UserTo userTo, int id) {
         assureIdConsistent(userTo, id);
         service.update(userTo);
-    }*/
+    }
 
     User getByEmail(String email) {
         return service.getByEmail(email);

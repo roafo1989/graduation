@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -16,6 +17,7 @@ import org.springframework.util.Assert;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+import static com.example.grad1.to.userTo.UserUtil.prepareToSave;
 import static com.example.grad1.util.ValidationUtil.checkNotFound;
 import static com.example.grad1.util.ValidationUtil.checkNotFoundWithId;
 
@@ -24,12 +26,11 @@ import static com.example.grad1.util.ValidationUtil.checkNotFoundWithId;
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
-
-    private final UserRepository repository;
     @Autowired
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
-    }
+    private UserRepository repository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
     public void delete(int id) {
@@ -55,7 +56,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User create(User user) {
-        return null;
+        Assert.notNull(user, "user must not be null");
+        return repository.save(prepareToSave(user, passwordEncoder));
     }
 
     @Override
@@ -71,7 +73,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) {
         User user = repository.getByEmail(email.toLowerCase());
-        System.out.println("service: loadUserByUsername: " + user.getEmail() + "; "+ user.getPassword() + "; " + user.getRoles());
+        System.out.println("service: " + user.getName() + "; " + user.getRoles());
         if (user == null) {
             throw new UsernameNotFoundException("User " + email + " is not found");
         }
