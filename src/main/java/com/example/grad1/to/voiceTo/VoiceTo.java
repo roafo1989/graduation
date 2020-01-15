@@ -36,6 +36,16 @@ public class VoiceTo extends BaseTo {
         this.restaurantName = restaurantName;
         this.userName = userName;
     }
+    public VoiceTo(Integer id, LocalDateTime dateTime, Integer restaurantId) {
+        super(id);
+        this.dateTime = dateTime;
+        this.restaurantId = restaurantId;
+    }
+    public VoiceTo(LocalDateTime dateTime, Integer restaurantId) {
+        super(null);
+        this.dateTime = dateTime;
+        this.restaurantId = restaurantId;
+    }
 
     public VoiceTo(Voice voice) {
         super(voice.getId());

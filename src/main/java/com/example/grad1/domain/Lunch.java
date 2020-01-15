@@ -40,13 +40,23 @@ public class Lunch extends AbstractNamedEntity {
 
     public Lunch(Integer id, LocalDate date, String name, Integer price, @NotNull Restaurant restaurant) {
         super(id, name);
+        this.date = date;
         this.price = price;
         this.restaurant = restaurant;
     }
     public Lunch(Lunch lunch){
         this(lunch.getId(),lunch.getDate(), lunch.getName(),lunch.getPrice(), lunch.getRestaurant());
     }
-
+    public Lunch(Integer id, String name, LocalDate date, Integer price) {
+        super(id, name);
+        this.date = date;
+        this.price = price;
+    }
+    public Lunch(String name, LocalDate date, Integer price) {
+        super(null, name);
+        this.date = date;
+        this.price = price;
+    }
 
 
     @Override
