@@ -13,17 +13,11 @@ import static com.example.grad1.util.ValidationUtil.checkNew;
 
 public class AbstractRestaurantController {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
-
     @Autowired
     private RestaurantService service;
 
     public List<Restaurant> getAllWithLunches(LocalDate date) {
         return service.getAllWithLunches(date);
-    }
-
-    public List<Restaurant> get(LocalDate date, int id) {
-        return service.getAllForId(date, id);
     }
 
     public Restaurant getById(int id) {

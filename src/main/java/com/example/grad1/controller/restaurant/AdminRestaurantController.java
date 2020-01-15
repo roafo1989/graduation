@@ -25,15 +25,7 @@ public class AdminRestaurantController extends AbstractRestaurantController {
                 .toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Restaurant getById(@PathVariable int id) {
-        return super.getById(id);
-    }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Restaurant> getAll() {
-        return super.getAll();
-    }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)

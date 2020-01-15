@@ -14,9 +14,9 @@ public interface UserService {
 
     User getByEmail(String email);
 
-    void update(User user);
+    User update(User user);
 
-    void update(UserTo user);
+    User update(UserTo user);
 
     List<User> getAll();
 }

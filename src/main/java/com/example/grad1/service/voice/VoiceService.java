@@ -25,4 +25,6 @@ public interface VoiceService {
     List<VoiceTo> getAllByDate(LocalDateTime dateTime);
 
     List<VoiceTo> getByRestaurantBetweenDates(String startDate, String endDate, int restaurantId);
+    List<VoiceTo> getByRestaurantBetweenDates(String startDate, int restaurantId);
+    List<VoiceTo> getByRestaurantId(int restaurantId);
 }

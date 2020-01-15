@@ -37,14 +37,14 @@ public abstract class AbstractUserController {
         service.delete(id);
     }
 
-    public void update(User user, int id) {
+    public User update(User user, int id) {
         assureIdConsistent(user, id);
-        service.update(user);
+        return service.update(user);
     }
 
-    public void update(UserTo userTo, int id) {
+    public User update(UserTo userTo, int id) {
         assureIdConsistent(userTo, id);
-        service.update(userTo);
+        return service.update(userTo);
     }
 
     User getByEmail(String email) {

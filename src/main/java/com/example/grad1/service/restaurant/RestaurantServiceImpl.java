@@ -31,10 +31,10 @@ public class RestaurantServiceImpl implements RestaurantService {
         return repository.findAllWithLunches(date);
     }
 
-    @Override
+/*    @Override
     public List<Restaurant> getAllForId(LocalDate date, int id){
         return checkNotFoundWithId(repository.findAllWithLunchById(date, id),id);
-    }
+    }*/
 
     @Override
     public List<Restaurant> getAll() {

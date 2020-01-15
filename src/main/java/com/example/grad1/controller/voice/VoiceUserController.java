@@ -56,9 +56,17 @@ public class VoiceUserController {
         return service.getByRestaurantIdAndDate(LocalDateTime.now(),restaurantId);
     }
 
-    @GetMapping("/by-restaurant-history")
+    @GetMapping("/by-restaurant-history-between-dates")
     public List<VoiceTo> getRestaurantHistory(@RequestParam String start, @RequestParam String end, @RequestParam int restaurantId){
         return service.getByRestaurantBetweenDates(start, end,restaurantId);
+    }
+    @GetMapping("/by-restaurant-history-from-date")
+    public List<VoiceTo> getRestaurantHistory(@RequestParam String start, @RequestParam int restaurantId){
+        return service.getByRestaurantBetweenDates(start, restaurantId);
+    }
+    @GetMapping("/by-restaurant-history")
+    public List<VoiceTo> getRestaurantHistory(@RequestParam int restaurantId){
+        return service.getByRestaurantId(restaurantId);
     }
 
 //Summary

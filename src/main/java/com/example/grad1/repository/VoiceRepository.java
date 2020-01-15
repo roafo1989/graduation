@@ -27,4 +27,7 @@ public interface VoiceRepository extends JpaRepository<Voice, Integer> {
     @Query("SELECT v FROM Voice v WHERE v.dateTime <=:endDate AND v.dateTime >=:startDate")
     List<Voice> findAllByDate(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
+    @Query("SELECT v FROM Voice v WHERE v.restaurant.id=:restaurantId")
+    List<Voice> getAllByRestaurantId(@Param("restaurantId") int restaurantId);
+
 }

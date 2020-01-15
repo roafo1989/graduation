@@ -24,6 +24,6 @@ public interface RestaurantService {
 
     List<Restaurant> getAll();
 
-    List<Restaurant> getAllForId(LocalDate date, int id);
+//    List<Restaurant> getAllForId(LocalDate date, int id);
 
 }

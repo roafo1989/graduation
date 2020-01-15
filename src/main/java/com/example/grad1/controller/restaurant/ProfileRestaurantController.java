@@ -14,11 +14,6 @@ public class ProfileRestaurantController extends AbstractRestaurantController {
 
     static final String REST_URL = "/rest/restaurants";
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Restaurant> getAllForId(@PathVariable("id") int id, @RequestParam String date) {
-        return super.get(getDate(date), id);
-    }
-
     @GetMapping(value = "/by-date",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Restaurant> getAllForDate(@RequestParam String date) {
         return super.getAllWithLunches(getDate(date));
@@ -29,9 +24,20 @@ public class ProfileRestaurantController extends AbstractRestaurantController {
         return super.getAllWithLunches(LocalDate.now());
     }
 
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Restaurant getById(@PathVariable int id) {
+        return super.getById(id);
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Restaurant> getAll() {
+        return super.getAll();
+    }
+
+
+
     private static LocalDate getDate(String date) {
         LocalDate localDate = LocalDate.parse(date);
         return localDate == null ? LocalDate.now() : localDate;
     }
-
 }

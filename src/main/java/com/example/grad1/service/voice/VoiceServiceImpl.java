@@ -62,10 +62,20 @@ public class VoiceServiceImpl implements VoiceService {
         return VoiceUtil.asTo(voiceRepository.getAllByRestaurantIdAndDate(date.with(LocalTime.MIN),date.with(LocalTime.MAX),restaurantId));
     }
     @Override
+    public List<VoiceTo> getByRestaurantBetweenDates(String startDate, int restaurantId){
+        LocalDateTime start = LocalDate.parse(startDate).atStartOfDay();
+        LocalDateTime end = LocalDateTime.now();
+        return VoiceUtil.asTo(voiceRepository.getAllByRestaurantIdAndDate(start.with(LocalTime.MIN),end.with(LocalTime.MAX),restaurantId));
+    }
+    @Override
     public List<VoiceTo> getByRestaurantBetweenDates(String startDate, String endDate, int restaurantId){
         LocalDateTime start = LocalDate.parse(startDate).atStartOfDay();
         LocalDateTime end = LocalDate.parse(endDate).atStartOfDay();
         return VoiceUtil.asTo(voiceRepository.getAllByRestaurantIdAndDate(start.with(LocalTime.MIN),end.with(LocalTime.MAX),restaurantId));
+    }
+    @Override
+    public List<VoiceTo> getByRestaurantId(int restaurantId){
+        return VoiceUtil.asTo(voiceRepository.getAllByRestaurantId(restaurantId));
     }
 
 

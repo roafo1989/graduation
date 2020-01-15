@@ -1,8 +1,6 @@
 package com.example.grad1.util.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.dao.EmptyResultDataAccessException;
-
 import java.time.LocalDateTime;
 
 public class ErrorInfo {

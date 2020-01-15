@@ -52,9 +52,9 @@ public class AdminUserController extends AbstractUserController {
 
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@RequestBody User user, @PathVariable int id) {
-        super.update(user, id);
+    @ResponseStatus(value = HttpStatus.OK)
+    public User update(@RequestBody User user, @PathVariable int id) {
+        return super.update(user, id);
     }
 
 }
