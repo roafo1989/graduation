@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalTime;
 
 public class ValidationUtil {
-    private static LocalTime DEADLINE_TIME = LocalTime.of(13, 00);
+    private static LocalTime DEADLINE_TIME = LocalTime.of(11, 00);
 
     private ValidationUtil() {
     }

@@ -107,7 +107,7 @@ http://localhost:8080/rest/voices?restaurantId=100004 --user user@mail.ru:passwo
     "dateTime": "2020-01-15T12:14:59.494",
     "restaurantId": 100004,
     "restaurantName": "Ogon da myaso",
-    "userName": "admin"
+    "userName": "user"
 }
 #### get my Voice for today
 `curl -s 
