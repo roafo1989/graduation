@@ -30,7 +30,7 @@ public class LunchController {
 
     @GetMapping(value = "/{restId}/lunches", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public List<LunchTo> getAllByRest(@PathVariable("restId") int restaurantId) {
+    public List<Lunch> getAllByRest(@PathVariable("restId") int restaurantId) {
         return lunchService.getAll(restaurantId);
     }
 

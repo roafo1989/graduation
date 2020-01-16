@@ -56,8 +56,8 @@ public class LunchServiceImpl implements LunchService {
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public List<LunchTo> getAll(int restaurantId) {
-        return LunchUtil.asTo(lunchRepository.findAllByRestaurantId(restaurantId));
+    public List<Lunch> getAll(int restaurantId) {
+        return (lunchRepository.findAllByRestaurantId(restaurantId));
     }
 
     @Override

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class VoiceServiceImplTest {
 
     @Autowired
-    private VoiceService voiceService;
+    private VoiceService service;
 
     @Test
     void create() {

@@ -29,10 +29,10 @@ public class LunchTestData {
     static final Lunch LUNCH7 = new Lunch(LUNCH7_ID, "Lunch7-Rest3", LocalDate.now(), 10);
 
 
-    static final Lunch LUNCHNEW = new Lunch(START_SEQ + 15, "New", of(2019, Month.JANUARY, 16), 111);
+    public static final Lunch LUNCH_NEW = new Lunch(START_SEQ + 15, "New", of(2019, Month.JANUARY, 16), 111);
 
     static {
-        LUNCHNEW.setRestaurant(RESTAURANT1);
+        LUNCH_NEW.setRestaurant(RESTAURANT1);
     }
 
     public static Lunch getCreated() {

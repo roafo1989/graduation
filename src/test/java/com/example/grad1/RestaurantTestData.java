@@ -23,7 +23,7 @@ public class RestaurantTestData {
         RESTAURANT1.setLunches(Arrays.asList(LUNCH1, LUNCH2, LUNCH3));
         RESTAURANT2.setLunches(Arrays.asList(LUNCH4, LUNCH5));
         RESTAURANT3.setLunches(Arrays.asList(LUNCH6, LUNCH7));
-        RESTAURANT1UPDATE.setLunches(Arrays.asList(LUNCH1, LUNCH2, LUNCH3, LUNCHNEW));
+        RESTAURANT1UPDATE.setLunches(Arrays.asList(LUNCH1, LUNCH2, LUNCH3, LUNCH_NEW));
     }
 
     public static Restaurant getCreated() {
@@ -35,13 +35,4 @@ public class RestaurantTestData {
         updated.setLunches(Arrays.asList(LUNCH1, LUNCH2, LUNCH3));
         return updated;
     }
-
-    public static void assertMatch(Restaurant actual, Restaurant expected) {
-        assertThat(actual).isEqualToComparingFieldByFieldRecursively(expected);
-    }
-
-    public static void assertMatch(Iterable<Restaurant> actual, Iterable<Restaurant> expected) {
-        assertThat(actual).isEqualTo(expected);
-    }
-
 }

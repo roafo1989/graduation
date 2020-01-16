@@ -26,12 +26,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     @Query("SELECT r FROM Restaurant r JOIN FETCH r.lunches d WHERE d.date =?1 ORDER BY r.name ASC ")
     List<Restaurant> findAllWithLunches(LocalDate date);
 
-/*
-    @EntityGraph(attributePaths = {"lunches"}, type = EntityGraph.EntityGraphType.LOAD)
-    @Query("SELECT r FROM Restaurant r JOIN FETCH r.lunches d WHERE d.date = ?1 AND r.id =?2 ORDER BY r.name ASC ")
-    List<Restaurant> findAllWithLunchById(LocalDate date, int id);
-*/
-
     @Override
     Optional<Restaurant> findById(Integer id);
 }

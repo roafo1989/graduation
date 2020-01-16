@@ -17,6 +17,7 @@ import java.util.Arrays;
 
 import static com.example.grad1.RestaurantTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = Grad1Application.class)

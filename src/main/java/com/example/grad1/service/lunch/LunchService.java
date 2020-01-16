@@ -17,7 +17,7 @@ public interface LunchService {
     Lunch get(int id, int restId);
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    List<LunchTo> getAll(int restaurantId);
+    List<Lunch> getAll(int restaurantId);
 
     Lunch update(@NotNull Lunch lunch, int restaurantId);
 }
