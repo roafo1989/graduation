@@ -1,6 +1,7 @@
 package com.example.grad1.service.voice;
 
 import com.example.grad1.domain.Restaurant;
+import com.example.grad1.domain.Voice;
 import com.example.grad1.to.voiceTo.VoiceTo;
 import org.springframework.transaction.annotation.Transactional;
 import javax.validation.constraints.NotNull;
@@ -9,10 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface VoiceService {
-    VoiceTo getByUserId(int userId, LocalDateTime dateTime);
+    Voice getByUserId(int userId, LocalDateTime dateTime);
 
     @Transactional
-    VoiceTo create(int userId, int restaurantId);
+    Voice create(int userId, int restaurantId);
 
     List<VoiceTo> getByRestaurantIdAndDate(@NotNull LocalDateTime date, int restaurantId);
 

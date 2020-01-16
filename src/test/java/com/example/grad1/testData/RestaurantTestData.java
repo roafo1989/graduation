@@ -1,17 +1,17 @@
-package com.example.grad1;
+package com.example.grad1.testData;
 
 import com.example.grad1.domain.Restaurant;
 
 import java.util.Arrays;
 
-import static com.example.grad1.LunchTestData.*;
+import static com.example.grad1.testData.LunchTestData.*;
 import static com.example.grad1.domain.baseModel.AbstractBaseEntity.START_SEQ;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestaurantTestData {
     public static final int RESTAURANT1_ID = START_SEQ + 3;
-    private static final int RESTAURANT2_ID = START_SEQ + 4;
-    private static final int RESTAURANT3_ID = START_SEQ + 5;
+    public static final int RESTAURANT2_ID = START_SEQ + 4;
+    public static final int RESTAURANT3_ID = START_SEQ + 5;
 
     public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT1_ID, "Kharbin");
     public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT2_ID, "Ogon da myaso");

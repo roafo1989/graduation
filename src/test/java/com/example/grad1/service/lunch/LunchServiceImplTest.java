@@ -2,23 +2,24 @@ package com.example.grad1.service.lunch;
 
 import com.example.grad1.Grad1Application;
 import com.example.grad1.domain.Lunch;
-import com.example.grad1.to.lunchTo.LunchTo;
-import com.example.grad1.to.lunchTo.LunchUtil;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.grad1.LunchTestData.*;
-import static com.example.grad1.RestaurantTestData.RESTAURANT1;
-import static com.example.grad1.RestaurantTestData.RESTAURANT1_ID;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.example.grad1.testData.LunchTestData.*;
+import static com.example.grad1.testData.RestaurantTestData.RESTAURANT1;
+import static com.example.grad1.testData.RestaurantTestData.RESTAURANT1_ID;
+
+@Sql(scripts = "classpath:populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = Grad1Application.class)

@@ -35,11 +35,10 @@ VALUES ('Lunch1-Rest1', '2020-01-10', 100003, 100),
        ('Lunch7-Rest3', CURRENT_DATE, 100005, 10);
 
 INSERT INTO voices (user_id, restaurant_id, dateTime)
-VALUES (100000, 100003, current_timestamp),
-       (100001, 100005, current_timestamp),
-       (100001, 100003, current_timestamp),
-       (100002, 100004, current_timestamp),
-       (100000, 100005, current_timestamp),
-       (100000, 100004, current_timestamp);
+VALUES (100000, 100004, current_date),
+       (100001, 100004, '2020-01-14 10:00:00'),
+       (100000, 100003, '2020-01-13 10:00:00'),
+       (100001, 100003, '2020-01-12 10:00:00'),
+       (100002, 100003, CURRENT_DATE);
 
 

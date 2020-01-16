@@ -1,7 +1,7 @@
 package com.example.grad1.service.restaurant;
 
 import com.example.grad1.Grad1Application;
-import com.example.grad1.RestaurantTestData;
+import com.example.grad1.testData.RestaurantTestData;
 import com.example.grad1.domain.Restaurant;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -9,15 +9,17 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityNotFoundException;
 
 import java.util.Arrays;
 
-import static com.example.grad1.RestaurantTestData.*;
+import static com.example.grad1.testData.RestaurantTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
-
+@Sql(scripts = "classpath:populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = Grad1Application.class)

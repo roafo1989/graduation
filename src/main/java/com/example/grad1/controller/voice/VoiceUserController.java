@@ -3,8 +3,10 @@ package com.example.grad1.controller.voice;
 import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.Restaurant;
 import com.example.grad1.domain.User;
+import com.example.grad1.domain.Voice;
 import com.example.grad1.service.voice.VoiceService;
 import com.example.grad1.to.voiceTo.VoiceTo;
+import com.example.grad1.to.voiceTo.VoiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,7 @@ public class VoiceUserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VoiceTo> create(@RequestParam ("restaurantId") int restaurantId, @AuthenticationPrincipal AuthorizedUser authorizedUser){
-        VoiceTo created = service.create(authorizedUser.getId(),restaurantId);
+        VoiceTo created = VoiceUtil.asTo(service.create(authorizedUser.getId(),restaurantId));
         URI uriOfNewResource = ServletUriComponentsBuilder
                 .fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -43,7 +45,7 @@ public class VoiceUserController {
 //By User
     @GetMapping("/my-voice-today")
     public VoiceTo getSelfToday(@AuthenticationPrincipal AuthorizedUser authorizedUser){
-        return service.getByUserId(authorizedUser.getId(), LocalDateTime.now());
+        return VoiceUtil.asTo(service.getByUserId(authorizedUser.getId(), LocalDateTime.now()));
     }
     @GetMapping("/my-history")
     public List<VoiceTo> getSelfHistory(@AuthenticationPrincipal AuthorizedUser authorizedUser){

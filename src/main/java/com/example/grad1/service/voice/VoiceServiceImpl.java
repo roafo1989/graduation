@@ -35,7 +35,7 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
     @Override
-    public VoiceTo create(int userId, int restaurantId) {
+    public Voice create(int userId, int restaurantId) {
         LocalDateTime dateTime = LocalDateTime.now();
         Voice oldVoice = voiceRepository.getMyVoice(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX),userId);
         Voice created = new Voice(dateTime,restaurantRepository.getOne(restaurantId),userRepository.getOne(userId));
@@ -43,13 +43,13 @@ public class VoiceServiceImpl implements VoiceService {
         if(oldVoice != null){
             voiceRepository.delete(oldVoice);
         }
-        return VoiceUtil.asTo(voiceRepository.save(created));
+        return voiceRepository.save(created);
     }
 
     //By User
     @Override
-    public VoiceTo getByUserId(int userId, LocalDateTime dateTime) {
-        return VoiceUtil.asTo(voiceRepository.getMyVoice(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX),userId));
+    public Voice getByUserId(int userId, LocalDateTime dateTime) {
+        return (voiceRepository.getMyVoice(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX),userId));
     }
     @Override
     public List<VoiceTo> getAllByUserId(int userId) {

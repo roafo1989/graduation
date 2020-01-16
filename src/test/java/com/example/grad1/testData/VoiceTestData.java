@@ -1,14 +1,21 @@
-package com.example.grad1;
+package com.example.grad1.testData;
 
+import com.example.grad1.TestUtil;
+import com.example.grad1.domain.Voice;
 import com.example.grad1.to.voiceTo.VoiceTo;
+import com.example.grad1.to.voiceTo.VoiceUtil;
+import org.assertj.core.api.Assertions;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.List;
 
 import static com.example.grad1.domain.baseModel.AbstractBaseEntity.START_SEQ;
+import static com.example.grad1.testData.RestaurantTestData.*;
+import static com.example.grad1.testData.UserTestData.*;
 import static java.time.LocalDateTime.of;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,15 +28,15 @@ public class VoiceTestData {
     private static final int V5_ID = START_SEQ + 17;
     private static final int V6_ID = START_SEQ + 18;
 
-    public static final VoiceTo VOICE1_TO = new VoiceTo(V1_ID, of(2020, Month.JANUARY, 15, 10, 0), 100004);
-    public static final VoiceTo VOICE2_TO = new VoiceTo(V2_ID, of(2020, Month.JANUARY, 15, 10, 0), 100004);
-    public static final VoiceTo VOICE3_TO = new VoiceTo(V3_ID, of(2020, Month.JANUARY, 16, 10, 0), 100003);
-    public static final VoiceTo VOICE4_TO = new VoiceTo(V4_ID, of(2020, Month.JANUARY, 16, 10, 0), 100003);
-    public static final VoiceTo VOICE5_TO = new VoiceTo(V5_ID, of(LocalDate.now(), LocalTime.MIN), 100003);
-    public static final VoiceTo VOICE6_TO = new VoiceTo(V6_ID, of(LocalDate.now(), LocalTime.MIN), 100004);
+    public static final Voice VOICE1 = new Voice(V1_ID, LocalDateTime.of(LocalDate.now(), LocalTime.of(10, 0)),RESTAURANT2,USER);
+    public static final Voice VOICE2 = new Voice(V2_ID, of(2020, Month.JANUARY, 14, 10, 0), RESTAURANT2, ADMIN);
+    public static final Voice VOICE3 = new Voice(V3_ID, of(2020, Month.JANUARY, 13, 10, 0), RESTAURANT1,USER);
+    public static final Voice VOICE4 = new Voice(V4_ID, of(2020, Month.JANUARY, 12, 10, 0), RESTAURANT1,ADMIN);
+    public static final Voice VOICE5 = new Voice(V5_ID, of(LocalDate.now(), LocalTime.MIN), RESTAURANT1,USER2);
 
-    public static VoiceTo getCreated() {
-        return new VoiceTo(LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0)), 100003);
+
+    public static Voice getCreated() {
+        return new Voice(LocalDateTime.now(),RESTAURANT2,ADMIN);
     }
 
     public static VoiceTo getUpdated() {
@@ -46,7 +53,7 @@ public class VoiceTestData {
     }*/
 
     private static ResultMatcher contentJson(Iterable<VoiceTo> expected) {
-        return result -> assertThat(TestUtil.readListFromJsonMvcResult(result, VoiceTo.class)).isEqualTo(expected);
+        return result -> Assertions.assertThat(TestUtil.readListFromJsonMvcResult(result, VoiceTo.class)).isEqualTo(expected);
     }
 
 }

@@ -1,13 +1,13 @@
-package com.example.grad1;
+package com.example.grad1.testData;
 
 import com.example.grad1.domain.Lunch;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.List;
+
 import static java.time.LocalDate.of;
 
-import static com.example.grad1.RestaurantTestData.RESTAURANT1;
+import static com.example.grad1.testData.RestaurantTestData.RESTAURANT1;
 import static com.example.grad1.domain.baseModel.AbstractBaseEntity.START_SEQ;
 import static org.assertj.core.api.Assertions.assertThat;
 
