@@ -20,23 +20,23 @@ public class LunchTestData {
     private static final int LUNCH6_ID = START_SEQ + 11;
     private static final int LUNCH7_ID = START_SEQ + 12;
 
-    public static final Lunch LUNCH1 = new Lunch(LUNCH1_ID, "Lunch1-Rest1", of(2019, Month.NOVEMBER, 23), 100);
-    public static final Lunch LUNCH2 = new Lunch(LUNCH2_ID, "Lunch2-Rest1", of(2019, Month.NOVEMBER, 23), 200);
-    public static final Lunch LUNCH3 = new Lunch(LUNCH3_ID, "Lunch3-Rest1", of(2019, Month.NOVEMBER, 23), 300);
+    public static final Lunch LUNCH1 = new Lunch(LUNCH1_ID, "Lunch1-Rest1", of(2020, Month.JANUARY, 10), 100);
+    public static final Lunch LUNCH2 = new Lunch(LUNCH2_ID, "Lunch2-Rest1", of(2020, Month.JANUARY, 10), 200);
+    public static final Lunch LUNCH3 = new Lunch(LUNCH3_ID, "Lunch3-Rest1", of(2020, Month.JANUARY, 13), 300);
     static final Lunch LUNCH4 = new Lunch(LUNCH4_ID, "Lunch4-Rest2", LocalDate.now(), 30);
     static final Lunch LUNCH5 = new Lunch(LUNCH5_ID, "Lunch5-Rest2", LocalDate.now(), 200);
     static final Lunch LUNCH6 = new Lunch(LUNCH6_ID, "Lunch6-Rest3", LocalDate.now(), 120);
     static final Lunch LUNCH7 = new Lunch(LUNCH7_ID, "Lunch7-Rest3", LocalDate.now(), 10);
 
 
-    static final Lunch LUNCHNEW = new Lunch(START_SEQ + 15, "New", of(2019, Month.NOVEMBER, 23), 111);
+    static final Lunch LUNCHNEW = new Lunch(START_SEQ + 15, "New", of(2019, Month.JANUARY, 16), 111);
 
     static {
         LUNCHNEW.setRestaurant(RESTAURANT1);
     }
 
     public static Lunch getCreated() {
-        return new Lunch("NewLunch", of(2019, Month.NOVEMBER, 23), 111);
+        return new Lunch("NewLunch", of(2020, Month.JANUARY, 16), 111);
     }
 
     public static Lunch getUpdated() {
