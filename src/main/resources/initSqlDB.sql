@@ -34,7 +34,7 @@ CREATE TABLE voices
     restaurant_id INTEGER NOT NULL,
     dateTime      TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE RESTRICT
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 
 CREATE TABLE lunches

@@ -13,9 +13,9 @@ public class RestaurantTestData {
     private static final int RESTAURANT2_ID = START_SEQ + 4;
     private static final int RESTAURANT3_ID = START_SEQ + 5;
 
-    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT1_ID, "Restaurant1");
-    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT2_ID, "Restaurant2");
-    public static final Restaurant RESTAURANT3 = new Restaurant(RESTAURANT3_ID, "Restaurant3");
+    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT1_ID, "Kharbin");
+    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT2_ID, "Ogon da myaso");
+    public static final Restaurant RESTAURANT3 = new Restaurant(RESTAURANT3_ID, "Panda");
 
     private static final Restaurant RESTAURANT1UPDATE = new Restaurant(RESTAURANT1_ID, "Restaurant1_Update");
 
