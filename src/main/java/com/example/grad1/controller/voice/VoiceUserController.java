@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +73,21 @@ public class VoiceUserController {
     }
 
 //Summary
+    @GetMapping("/rating-by")
+    public Map<String, Integer> getRatingBy(@RequestParam String date){
+        LocalDateTime dateTime = LocalDate.parse(date).atStartOfDay();
+        return service.getRatingByDate(dateTime);
+    }
+    @GetMapping("/rating-today")
+    public Map<String, Integer> getRatingToday(){
+        return service.getRatingByDate(LocalDateTime.now());
+    }
+
+    @GetMapping("/rating")
+    public Map<String, Integer> getRating(){
+        return service.getRating();
+    }
+
     @GetMapping("/all-for-today")
     public List<VoiceTo> getAllForToday(){
         return service.getAllByDate(LocalDateTime.now());
@@ -81,10 +97,4 @@ public class VoiceUserController {
     public Map<Restaurant, List<VoiceTo>> getAll(){
         return service.getAllByRestaurantIdAndDate(LocalDateTime.now());
     }
-
-    @GetMapping("/rating-today")
-    public Map<String, Integer> getRating(){
-        return service.getRatingByDate(LocalDateTime.now());
-    }
-
 }

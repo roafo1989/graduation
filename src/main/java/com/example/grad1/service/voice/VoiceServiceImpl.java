@@ -101,6 +101,16 @@ public class VoiceServiceImpl implements VoiceService {
         return voiceResult;
     }
     @Override
+    public Map<String, Integer> getRating() {
+        List<Restaurant> restaurantList = restaurantRepository.findAll();
+        Map<String, Integer> voiceResult = new ConcurrentHashMap<>();
+        for(Restaurant r : restaurantList){
+            List<VoiceTo> voiceList = getByRestaurantId(r.id);
+            voiceResult.put(r.getName(),voiceList.size());
+        }
+        return voiceResult;
+    }
+    @Override
     public List<VoiceTo> getAllByDate(LocalDateTime dateTime) {
         return VoiceUtil.asTo(voiceRepository.findAllByDate(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX)));
     }

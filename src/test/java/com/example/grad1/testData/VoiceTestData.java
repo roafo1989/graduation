@@ -1,17 +1,12 @@
 package com.example.grad1.testData;
 
-import com.example.grad1.TestUtil;
 import com.example.grad1.domain.Voice;
 import com.example.grad1.to.voiceTo.VoiceTo;
-import com.example.grad1.to.voiceTo.VoiceUtil;
-import org.assertj.core.api.Assertions;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
-import java.util.List;
 
 import static com.example.grad1.domain.baseModel.AbstractBaseEntity.START_SEQ;
 import static com.example.grad1.testData.RestaurantTestData.*;
@@ -43,17 +38,6 @@ public class VoiceTestData {
         return new VoiceTo(V5_ID, LocalDateTime.of(LocalDate.now(), LocalTime.of(10, 0)), 100004);
     }
 
-    public static void assertMatch(VoiceTo actual, VoiceTo expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected, "dateTime");
-        assertEquals(actual.getDateTime().toLocalDate(), expected.getDateTime().toLocalDate());
-    }
 
-/*    public static ResultMatcher contentJson(VoiceTo... expected) {
-        return contentJson(List.of(expected));
-    }*/
-
-    private static ResultMatcher contentJson(Iterable<VoiceTo> expected) {
-        return result -> Assertions.assertThat(TestUtil.readListFromJsonMvcResult(result, VoiceTo.class)).isEqualTo(expected);
-    }
 
 }

@@ -3,12 +3,11 @@ package com.example.grad1.testData;
 import com.example.grad1.domain.Role;
 import com.example.grad1.domain.User;
 import com.example.grad1.to.userTo.UserTo;
-import org.springframework.test.web.servlet.ResultMatcher;
+
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.grad1.TestUtil.readListFromJsonMvcResult;
 import static com.example.grad1.domain.baseModel.AbstractBaseEntity.START_SEQ;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,10 +44,5 @@ public class UserTestData {
         assertThat(actual).usingElementComparatorIgnoringFields("password","registered").isEqualTo(expected);
     }
 
-/*
-    public static ResultMatcher contentJson(User... expected) {
-        return result -> assertMatch(readListFromJsonMvcResult(result, User.class), List.of(expected));
-    }
-*/
 
 }
