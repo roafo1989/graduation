@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.example.grad1.controller.restaurant.ProfileRestaurantController.REST_URL;
+import static com.example.grad1.controller.restaurant.UserRestaurantController.REST_URL;
 
 @RestController
 @RequestMapping(value = REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class ProfileRestaurantController extends AbstractRestaurantController {
+public class UserRestaurantController extends AbstractRestaurantController {
 
     static final String REST_URL = "/rest/restaurants";
 

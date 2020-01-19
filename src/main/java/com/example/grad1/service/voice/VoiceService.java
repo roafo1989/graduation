@@ -10,23 +10,22 @@ import java.util.List;
 import java.util.Map;
 
 public interface VoiceService {
-    Voice getByUserId(int userId, LocalDateTime dateTime);
-
     @Transactional
     Voice create(int userId, int restaurantId);
 
-    List<VoiceTo> getByRestaurantIdAndDate(@NotNull LocalDateTime date, int restaurantId);
-
-    Map<Restaurant, List<VoiceTo>> getAllByRestaurantIdAndDate(@NotNull LocalDateTime dateTime);
-
-    Map<String, Integer> getRatingByDate(LocalDateTime dateTime);
-
+    List<VoiceTo> getByUserIdAndDate(int userId, String dateStr);
     List<VoiceTo> getAllByUserId(int userId);
 
-    List<VoiceTo> getAllByDate(LocalDateTime dateTime);
-
     List<VoiceTo> getByRestaurantBetweenDates(String startDate, String endDate, int restaurantId);
-    List<VoiceTo> getByRestaurantBetweenDates(String startDate, int restaurantId);
+    List<VoiceTo> getByRestaurantIdAndDate(String date, int restaurantId);
     List<VoiceTo> getByRestaurantId(int restaurantId);
+
+    Map<String, Integer> getRatingByDate(String dateTime);
     Map<String, Integer> getRating();
+
+    List<VoiceTo> getAllByDate(String dateTime);
+    List<VoiceTo> getAll();
+
+    Map<Restaurant, List<VoiceTo>> getAllByRestaurantIdAndDate(String dateTime);
+    Map<Restaurant, List<VoiceTo>> getAllByRestaurantId();
 }

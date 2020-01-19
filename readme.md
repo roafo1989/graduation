@@ -28,15 +28,22 @@ P.P.S.: Asume that your API will be used by a frontend developer to build fronte
 ### Голосование
 USER_ROLE:
 - POST /rest/voices - голосовать за ресторан по id
-- GET /rest/voices/my-voice-today - получить свой голос на сегодня
-- GET /rest/voices/my-history - получить историю своих голосов
-- GET /rest/voices/by-restaurant-today - получить голоса за ресторан на сегодня
-- GET /rest/voices/by-restaurant-history - получить историю голосов за ресторан
-- GET /rest/voices/by-restaurant-history-from-date - получить историю голосов за ресторан, начиная с указанной даты
-- GET /rest/voices/by-restaurant-history-between-dates - получить историю голосов за ресторан за указанный период
-- GET /rest/voices/all-for-today - получить все голоса на сегодня
-- GET /rest/voices/summary-today - получить все рестораны с голосами на сегодня (ресторан : [все голоса на сегодня])
-- GET /rest/voices/rating-today - получить рейтинг ресторанов на сегодня (ресторан: количество голосов)
+- GET /rest/voices?date={date} - получить свой голос на дату
+- GET /rest/voices - получить историю своих голосов
+
+- GET /rest/voices/rating-by - получить рейтинг ресторанов на дату (ресторан: количество голосов)
+- GET /rest/voices/rating -  получить рейтинг ресторанов (ресторан: количество голосов)
+
+ADMIN_ROLE
+- GET /rest/admin/voices/restaurant?start={start}&end={end}&restaurantId={restaurantId} - получить голоса за ресторан между датами
+- GET /rest/admin/voices/restaurant?date={date}&restaurantId={restaurantId} - получить историю голосов за ресторан на указанную дату
+- GET /rest/admin/voices/restaurant?restaurantId={restaurantId} - получить полную историю голосов за ресторан
+
+- GET /rest/admin/voices/all-by - получить все голоса на дату
+- GET /rest/admin/voices/all - получить все голоса
+
+- GET /rest/admin/voices/summary-by - получить все рестораны с голосами на дату (ресторан : [все голоса на дату])
+- GET /rest/admin/voices/summary - получить все рестораны с голосами
 
 
 ### Ресторан

@@ -37,19 +37,24 @@ public class VoiceServiceImpl implements VoiceService {
     @Override
     public Voice create(int userId, int restaurantId) {
         LocalDateTime dateTime = LocalDateTime.now();
-        Voice oldVoice = voiceRepository.getMyVoice(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX),userId);
-        Voice created = new Voice(dateTime,restaurantRepository.getOne(restaurantId),userRepository.getOne(userId));
-        ValidationUtil.checkTimeForOperations(dateTime.toLocalTime());
-        if(oldVoice != null){
-            voiceRepository.delete(oldVoice);
+        List<Voice> voices = voiceRepository.getMyVoice(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX),userId);
+        if(voices.isEmpty()){
+            Voice created = new Voice(dateTime,restaurantRepository.getOne(restaurantId),userRepository.getOne(userId));
+            return voiceRepository.save(created);
+        } else {
+            ValidationUtil.checkTimeForOperations(dateTime.toLocalTime());
+            Voice voice = voices.get(0);
+            voice.setRestaurant(restaurantRepository.getOne(restaurantId));
+            voice.setDateTime(dateTime);
+            return voiceRepository.save(voice);
         }
-        return voiceRepository.save(created);
     }
 
     //By User
     @Override
-    public Voice getByUserId(int userId, LocalDateTime dateTime) {
-        return (voiceRepository.getMyVoice(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX),userId));
+    public List<VoiceTo> getByUserIdAndDate(int userId, String dateStr) {
+        LocalDateTime date = LocalDate.parse(dateStr).atStartOfDay();
+        return VoiceUtil.asTo(voiceRepository.getMyVoice(date.with(LocalTime.MIN),date.with(LocalTime.MAX),userId));
     }
     @Override
     public List<VoiceTo> getAllByUserId(int userId) {
@@ -58,21 +63,19 @@ public class VoiceServiceImpl implements VoiceService {
 
     //By Restaurant
     @Override
-    public List<VoiceTo> getByRestaurantIdAndDate(LocalDateTime date, int restaurantId) {
+    public List<VoiceTo> getByRestaurantIdAndDate(String dateStr, int restaurantId) {
+        LocalDateTime date = LocalDate.parse(dateStr).atStartOfDay();
         return VoiceUtil.asTo(voiceRepository.getAllByRestaurantIdAndDate(date.with(LocalTime.MIN),date.with(LocalTime.MAX),restaurantId));
     }
-    @Override
-    public List<VoiceTo> getByRestaurantBetweenDates(String startDate, int restaurantId){
-        LocalDateTime start = LocalDate.parse(startDate).atStartOfDay();
-        LocalDateTime end = LocalDateTime.now();
-        return VoiceUtil.asTo(voiceRepository.getAllByRestaurantIdAndDate(start.with(LocalTime.MIN),end.with(LocalTime.MAX),restaurantId));
-    }
+
+
     @Override
     public List<VoiceTo> getByRestaurantBetweenDates(String startDate, String endDate, int restaurantId){
         LocalDateTime start = LocalDate.parse(startDate).atStartOfDay();
         LocalDateTime end = LocalDate.parse(endDate).atStartOfDay();
         return VoiceUtil.asTo(voiceRepository.getAllByRestaurantIdAndDate(start.with(LocalTime.MIN),end.with(LocalTime.MAX),restaurantId));
     }
+
     @Override
     public List<VoiceTo> getByRestaurantId(int restaurantId){
         return VoiceUtil.asTo(voiceRepository.getAllByRestaurantId(restaurantId));
@@ -81,7 +84,7 @@ public class VoiceServiceImpl implements VoiceService {
 
     //Summary
     @Override
-    public Map<Restaurant, List<VoiceTo>> getAllByRestaurantIdAndDate(LocalDateTime date) {
+    public Map<Restaurant, List<VoiceTo>> getAllByRestaurantIdAndDate(String date) {
         List<Restaurant> restaurantList = restaurantRepository.findAll();
         Map<Restaurant,List<VoiceTo>> voiceResult = new ConcurrentHashMap<>();
         for(Restaurant r : restaurantList){
@@ -91,7 +94,17 @@ public class VoiceServiceImpl implements VoiceService {
         return voiceResult;
     }
     @Override
-    public Map<String, Integer> getRatingByDate(LocalDateTime date) {
+    public Map<Restaurant, List<VoiceTo>> getAllByRestaurantId() {
+        List<Restaurant> restaurantList = restaurantRepository.findAll();
+        Map<Restaurant,List<VoiceTo>> voiceResult = new ConcurrentHashMap<>();
+        for(Restaurant r : restaurantList){
+            List<VoiceTo> voiceList = getByRestaurantId(r.id);
+            voiceResult.put(r,voiceList);
+        }
+        return voiceResult;
+    }
+    @Override
+    public Map<String, Integer> getRatingByDate(String date) { ;
         List<Restaurant> restaurantList = restaurantRepository.findAll();
         Map<String, Integer> voiceResult = new ConcurrentHashMap<>();
         for(Restaurant r : restaurantList){
@@ -111,7 +124,12 @@ public class VoiceServiceImpl implements VoiceService {
         return voiceResult;
     }
     @Override
-    public List<VoiceTo> getAllByDate(LocalDateTime dateTime) {
-        return VoiceUtil.asTo(voiceRepository.findAllByDate(dateTime.with(LocalTime.MIN),dateTime.with(LocalTime.MAX)));
+    public List<VoiceTo> getAllByDate(String dateStr) {
+        LocalDateTime date = LocalDate.parse(dateStr).atStartOfDay();
+        return VoiceUtil.asTo(voiceRepository.findAllByDate(date.with(LocalTime.MIN),date.with(LocalTime.MAX)));
+    }
+    @Override
+    public List<VoiceTo> getAll() {
+        return VoiceUtil.asTo(voiceRepository.findAll());
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
@@ -19,7 +20,7 @@ public interface VoiceRepository extends JpaRepository<Voice, Integer> {
     List<Voice> findByUserIdOrderByDateTimeDesc(int userId);
 
     @Query("SELECT v FROM Voice v WHERE v.dateTime <=:endDate AND v.dateTime >=:startDate AND v.user.id=:userId")
-    Voice getMyVoice(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("userId") int userId);
+    List<Voice> getMyVoice(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("userId") int userId);
 
     @Query("SELECT v FROM Voice v WHERE v.restaurant.id=:restaurantId AND v.dateTime <=:endDate AND v.dateTime >=:startDate")
     List<Voice> getAllByRestaurantIdAndDate(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("restaurantId") int restaurantId);

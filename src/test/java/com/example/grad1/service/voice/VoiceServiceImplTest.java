@@ -41,17 +41,11 @@ class VoiceServiceImplTest {
 
     @Test
     void create() {
-        ValidationUtil.setDeadLineTime(LocalTime.MAX);
-        Voice newVoice = VoiceTestData.getCreated();
-        Voice created = voiceService.create(ADMIN_ID,RESTAURANT2_ID);
-        Assert.assertEquals(VoiceUtil.asTo(newVoice),VoiceUtil.asTo(created));
-        ValidationUtil.setDeadLineTime(LocalTime.of(11, 00));
+
     }
 
     @Test
     void getByUserId() {
-        Voice voice = voiceService.getByUserId(USER_ID, LocalDateTime.now());
-        Assert.assertEquals(VOICE1,voice);
     }
 
     @Test

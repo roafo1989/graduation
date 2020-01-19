@@ -33,7 +33,7 @@ public class VoiceUserController {
     @Autowired
     VoiceService service;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<VoiceTo> create(@RequestParam ("restaurantId") int restaurantId, @AuthenticationPrincipal AuthorizedUser authorizedUser){
         VoiceTo created = VoiceUtil.asTo(service.create(authorizedUser.getId(),restaurantId));
         URI uriOfNewResource = ServletUriComponentsBuilder
@@ -43,58 +43,34 @@ public class VoiceUserController {
                 .toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
-//By User
-    @GetMapping("/my-voice-today")
-    public VoiceTo getSelfToday(@AuthenticationPrincipal AuthorizedUser authorizedUser){
-        return VoiceUtil.asTo(service.getByUserId(authorizedUser.getId(), LocalDateTime.now()));
-    }
-    @GetMapping("/my-history")
-    public List<VoiceTo> getSelfHistory(@AuthenticationPrincipal AuthorizedUser authorizedUser){
-        return service.getAllByUserId(authorizedUser.getId());
+    @PutMapping("/update")
+    public VoiceTo update(@RequestParam ("restaurantId") int restaurantId, @AuthenticationPrincipal AuthorizedUser authorizedUser){
+        return VoiceUtil.asTo(service.create(authorizedUser.getId(),restaurantId));
     }
 
-//By Restaurant
-    @GetMapping("/by-restaurant-today")
-    public List<VoiceTo> current(@RequestParam int restaurantId) {
-        return service.getByRestaurantIdAndDate(LocalDateTime.now(),restaurantId);
-    }
 
-    @GetMapping("/by-restaurant-history-between-dates")
-    public List<VoiceTo> getRestaurantHistory(@RequestParam String start, @RequestParam String end, @RequestParam int restaurantId){
-        return service.getByRestaurantBetweenDates(start, end,restaurantId);
-    }
-    @GetMapping("/by-restaurant-history-from-date")
-    public List<VoiceTo> getRestaurantHistory(@RequestParam String start, @RequestParam int restaurantId){
-        return service.getByRestaurantBetweenDates(start, restaurantId);
-    }
-    @GetMapping("/by-restaurant-history")
-    public List<VoiceTo> getRestaurantHistory(@RequestParam int restaurantId){
-        return service.getByRestaurantId(restaurantId);
+    @GetMapping
+    public List<VoiceTo> getSelf(@AuthenticationPrincipal AuthorizedUser authorizedUser,
+                                        @RequestParam(value = "date", required = false) String date){
+        if(date == null) {
+            return service.getAllByUserId(authorizedUser.getId());
+        } else return service.getByUserIdAndDate(authorizedUser.getId(), date);
     }
 
 //Summary
     @GetMapping("/rating-by")
-    public Map<String, Integer> getRatingBy(@RequestParam String date){
-        LocalDateTime dateTime = LocalDate.parse(date).atStartOfDay();
-        return service.getRatingByDate(dateTime);
+    public Map<String, Integer> getRatingBy(@RequestParam(value = "date", required = false) String date){
+        return service.getRatingByDate(getStringDate(date));
     }
-    @GetMapping("/rating-today")
-    public Map<String, Integer> getRatingToday(){
-        return service.getRatingByDate(LocalDateTime.now());
-    }
-
     @GetMapping("/rating")
     public Map<String, Integer> getRating(){
         return service.getRating();
     }
 
-    @GetMapping("/all-for-today")
-    public List<VoiceTo> getAllForToday(){
-        return service.getAllByDate(LocalDateTime.now());
-    }
-
-    @GetMapping("/summary-today")
-    public Map<Restaurant, List<VoiceTo>> getAll(){
-        return service.getAllByRestaurantIdAndDate(LocalDateTime.now());
+    public String getStringDate(String date){
+        if (date == null){
+            date = LocalDate.now().toString();
+        }
+        return date;
     }
 }
