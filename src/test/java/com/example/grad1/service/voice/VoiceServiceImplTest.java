@@ -1,15 +1,8 @@
 package com.example.grad1.service.voice;
 
 import com.example.grad1.Grad1Application;
-import com.example.grad1.domain.Restaurant;
-import com.example.grad1.domain.Voice;
 import com.example.grad1.service.restaurant.RestaurantService;
 import com.example.grad1.service.user.UserService;
-import com.example.grad1.testData.VoiceTestData;
-import com.example.grad1.to.voiceTo.VoiceTo;
-import com.example.grad1.to.voiceTo.VoiceUtil;
-import com.example.grad1.util.ValidationUtil;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-
-import static com.example.grad1.testData.RestaurantTestData.*;
-import static com.example.grad1.testData.UserTestData.*;
-import static com.example.grad1.testData.VoiceTestData.*;
 
 
-@Sql(scripts = "classpath:populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:static/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = Grad1Application.class)

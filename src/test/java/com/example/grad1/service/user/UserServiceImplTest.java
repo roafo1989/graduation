@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.example.grad1.testData.UserTestData.*;
 
-@Sql(scripts = "classpath:populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:static/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = Grad1Application.class)

@@ -19,7 +19,7 @@ import static com.example.grad1.testData.LunchTestData.*;
 import static com.example.grad1.testData.RestaurantTestData.RESTAURANT1;
 import static com.example.grad1.testData.RestaurantTestData.RESTAURANT1_ID;
 
-@Sql(scripts = "classpath:populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:static/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = Grad1Application.class)

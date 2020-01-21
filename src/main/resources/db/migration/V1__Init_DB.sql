@@ -43,7 +43,7 @@ CREATE TABLE lunches
     restaurant_id INTEGER      NOT NULL,
     name          VARCHAR(255) NOT NULL,
     price         INTEGER      NOT NULL,
-        date          DATE     NOT NULL,
+    date          DATE     NOT NULL,
     CHECK ( price >= 0 ),
     FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
@@ -52,7 +52,14 @@ CREATE UNIQUE INDEX lunches_unique_name_restaurant_idx ON lunches (name, restaur
 CREATE TABLE user_roles
 (
     user_id INTEGER NOT NULL,
-    role    VARCHAR,
+    role    VARCHAR(255),
     CONSTRAINT user_roles_idx UNIQUE (user_id, role),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
+
+INSERT INTO users (name, email, password)
+VALUES ('Admin', 'admin@mail.ru', '{noop}password');
+
+INSERT INTO user_roles (role, user_id) VALUES
+('ROLE_USER', 100000),
+('ROLE_ADMIN', 100000);

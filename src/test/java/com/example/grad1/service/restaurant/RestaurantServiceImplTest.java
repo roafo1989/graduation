@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 import static com.example.grad1.testData.RestaurantTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
-@Sql(scripts = "classpath:populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:static/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = Grad1Application.class)

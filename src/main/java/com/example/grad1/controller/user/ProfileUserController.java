@@ -3,6 +3,7 @@ package com.example.grad1.controller.user;
 import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.User;
 import com.example.grad1.to.userTo.UserTo;
+import com.example.grad1.to.userTo.UserUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,14 @@ public class ProfileUserController extends AbstractUserController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public User update(@RequestBody UserTo userTo, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
+    public User update(@RequestParam (required = false) String name,
+                       @RequestParam (required = false) String email,
+                       @RequestParam (required = false) String password,
+                       @AuthenticationPrincipal AuthorizedUser authorizedUser) {
+        UserTo userTo = UserUtil.asTo(super.get(authorizedUser.getId()));
+        if(name != null) {userTo.setName(name);}
+        if(email != null) {userTo.setEmail(email);}
+        if(password != null) {userTo.setPassword(password);}
         return super.update(userTo, authorizedUser.getId());
     }
 
