@@ -76,4 +76,4 @@ USER_ROLE:
 - DELETE /rest/profile - удалить свой профиль
 
 ANONYMOUS:
-- POST /rest/profile - зарегистрироваться как новый пользователь
+- POST /rest/profile.register - зарегистрироваться как новый пользователь
