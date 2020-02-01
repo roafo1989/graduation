@@ -1,18 +1,20 @@
 package com.example.grad1.util;
 
+import com.example.grad1.domain.User;
 import com.example.grad1.domain.baseModel.AbstractBaseEntity;
 import com.example.grad1.domain.baseModel.HasId;
+import com.example.grad1.repository.UserRepository;
 import com.example.grad1.util.exception.IllegalRequestDataException;
 import com.example.grad1.util.exception.NotFoundException;
 import com.example.grad1.util.exception.VoteTimeViolationException;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalTime;
 
 public class ValidationUtil {
     private static LocalTime DEADLINE_TIME = LocalTime.of(11, 00);
-
     private ValidationUtil() {
     }
 
@@ -40,6 +42,7 @@ public class ValidationUtil {
             throw new IllegalRequestDataException(bean + " must be new (id = null)");
         }
     }
+
 
     public static void assureIdConsistent(HasId bean, int id) {
         if (bean.isNew()) {
@@ -88,4 +91,5 @@ public class ValidationUtil {
         }
         return rootCause;
     }
+
 }

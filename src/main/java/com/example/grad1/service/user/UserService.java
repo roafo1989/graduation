@@ -20,4 +20,5 @@ public interface UserService {
 
     List<User> getAll();
     User activateUser(String code);
+    void sendMail(User user);
 }

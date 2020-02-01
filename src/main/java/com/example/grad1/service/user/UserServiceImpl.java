@@ -1,10 +1,12 @@
 package com.example.grad1.service.user;
+
 import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.User;
 import com.example.grad1.repository.UserRepository;
 import com.example.grad1.to.userTo.UserTo;
+import com.example.grad1.util.exception.EmailError;
+import com.example.grad1.util.exception.IllegalRequestDataException;
 import com.example.grad1.util.exception.NotFoundActivationException;
-import org.hsqldb.lib.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -17,20 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import javax.mail.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Properties;
 import java.util.UUID;
-
-
-import javax.mail.internet.*;
-import javax.mail.internet.MimeMessage;
 
 import static com.example.grad1.to.userTo.UserUtil.prepareToSave;
 import static com.example.grad1.to.userTo.UserUtil.updateFromTo;
-import static com.example.grad1.util.ValidationUtil.checkNotFound;
-import static com.example.grad1.util.ValidationUtil.checkNotFoundWithId;
+import static com.example.grad1.util.ValidationUtil.*;
 
 
 @Service("userService")
@@ -72,19 +67,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
+        Assert.notNull(user.getEmail(),"email must not be null");
+        if (repository.getByEmail(user.getEmail()) != null) {
+            System.out.println(user);
+            throw new IllegalRequestDataException("User with " + user.getEmail() + " is exist!");
+        }
         user.setEnabled(false);
         user.setActivation(UUID.randomUUID().toString());
         repository.save(prepareToSave(user, passwordEncoder));
-
-        if (!StringUtils.isEmpty(user.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to vote manager! Your link for activation: http://localhost:8080/rest/profile/activate/%s",
-                    user.getName(), user.getActivation()
-            );
-            mailSender.send(user.getEmail(),"Activation Code",message);
-        }
-
+        sendMail(user);
         return repository.getByEmail(user.getEmail());
     }
 
@@ -120,6 +111,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setEnabled(true);
         repository.save(user);
         return user;
+    }
+    @Override
+    public void sendMail(User user){
+            String message = String.format(
+                    "Hello, %s! \n" +
+                            "Welcome to vote manager! Your link for activation: http://localhost:8080/rest/profile/activate/%s",
+                    user.getName(), user.getActivation()
+            );
+            mailSender.send(user.getEmail(),"Activation Code",message);
     }
 }
 
