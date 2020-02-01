@@ -1,6 +1,7 @@
 package com.example.grad1.service.voice;
 
 import com.example.grad1.domain.Restaurant;
+import com.example.grad1.domain.User;
 import com.example.grad1.domain.Voice;
 import com.example.grad1.to.voiceTo.VoiceTo;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,4 +29,5 @@ public interface VoiceService {
 
     Map<Restaurant, List<VoiceTo>> getAllByRestaurantIdAndDate(String dateTime);
     Map<Restaurant, List<VoiceTo>> getAllByRestaurantId();
+
 }

@@ -14,8 +14,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import javax.mail.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Properties;
+
+
+import javax.mail.internet.*;
+import javax.mail.internet.MimeMessage;
 
 import static com.example.grad1.to.userTo.UserUtil.prepareToSave;
 import static com.example.grad1.to.userTo.UserUtil.updateFromTo;
@@ -58,6 +64,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
+        sendMail(user);
         return repository.save(prepareToSave(user, passwordEncoder));
     }
 
@@ -82,7 +89,33 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new UsernameNotFoundException("User " + email + " is not found");
         }
         return new AuthorizedUser(user);
+    }
 
+    @Override
+    public void sendMail(User user){
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smpt.mail.ru");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.sendpartial", "true");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        Session session = Session.getDefaultInstance(properties,
+                new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("roafo@mail.ru", "shevchuk1");
+                    }
+                });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("roafo@mail.ru"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
+            message.setSubject("Подтверждение регистрации");
+            message.setText("Привет, " + user.getName() + "! Вы успешно зарегистрированы." );
+            Transport.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }
 

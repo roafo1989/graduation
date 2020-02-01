@@ -1,27 +1,22 @@
-package com.example.grad1.controller.voice;
+package com.example.grad1.controller.user;
 
 import com.example.grad1.controller.security.AuthorizedUser;
-import com.example.grad1.domain.Restaurant;
-import com.example.grad1.domain.User;
-import com.example.grad1.domain.Voice;
 import com.example.grad1.service.voice.VoiceService;
 import com.example.grad1.to.voiceTo.VoiceTo;
 import com.example.grad1.to.voiceTo.VoiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.grad1.controller.voice.VoiceUserController.REST_URL;
+import static com.example.grad1.controller.user.VoiceUserController.REST_URL;
 
 
 @RestController
@@ -34,7 +29,8 @@ public class VoiceUserController {
     VoiceService service;
 
     @PostMapping
-    public ResponseEntity<VoiceTo> create(@RequestParam ("restaurantId") int restaurantId, @AuthenticationPrincipal AuthorizedUser authorizedUser){
+    public ResponseEntity<VoiceTo> create(@RequestParam ("restaurantId") int restaurantId,
+                                          @AuthenticationPrincipal AuthorizedUser authorizedUser){
         VoiceTo created = VoiceUtil.asTo(service.create(authorizedUser.getId(),restaurantId));
         URI uriOfNewResource = ServletUriComponentsBuilder
                 .fromCurrentContextPath()
@@ -43,8 +39,9 @@ public class VoiceUserController {
                 .toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
-    @PutMapping("/update")
-    public VoiceTo update(@RequestParam ("restaurantId") int restaurantId, @AuthenticationPrincipal AuthorizedUser authorizedUser){
+    @PutMapping
+    public VoiceTo update(@RequestParam ("restaurantId") int restaurantId,
+                          @AuthenticationPrincipal AuthorizedUser authorizedUser){
         return VoiceUtil.asTo(service.create(authorizedUser.getId(),restaurantId));
     }
 
@@ -62,6 +59,7 @@ public class VoiceUserController {
     public Map<String, Integer> getRatingBy(@RequestParam(value = "date", required = false) String date){
         return service.getRatingByDate(getStringDate(date));
     }
+
     @GetMapping("/rating")
     public Map<String, Integer> getRating(){
         return service.getRating();

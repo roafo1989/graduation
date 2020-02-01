@@ -1,5 +1,6 @@
-package com.example.grad1.controller.restaurant;
+package com.example.grad1.controller.admin;
 
+import com.example.grad1.controller.base.AbstractRestaurantController;
 import com.example.grad1.domain.Restaurant;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = AdminRestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)

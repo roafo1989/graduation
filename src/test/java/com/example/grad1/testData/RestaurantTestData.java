@@ -18,7 +18,7 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT3 = new Restaurant(RESTAURANT3_ID, "Panda");
 
     private static final Restaurant RESTAURANT1UPDATE = new Restaurant(RESTAURANT1_ID, "Restaurant1_Update");
-
+/*
     static {
         RESTAURANT1.setLunches(Arrays.asList(LUNCH1, LUNCH2, LUNCH3));
         RESTAURANT2.setLunches(Arrays.asList(LUNCH4, LUNCH5));
@@ -34,5 +34,5 @@ public class RestaurantTestData {
         Restaurant updated = new Restaurant(RESTAURANT1_ID, "Restaurant1_updated");
         updated.setLunches(Arrays.asList(LUNCH1, LUNCH2, LUNCH3));
         return updated;
-    }
+    }*/
 }

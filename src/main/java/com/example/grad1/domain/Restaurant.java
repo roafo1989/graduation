@@ -19,7 +19,7 @@ public class Restaurant extends AbstractNamedEntity {
 
     public static final String GRAPH_WITH_LUNCHES = "Restaurant.withLunches";
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
     @OrderBy("name DESC")
     private List<Lunch> lunches;
 

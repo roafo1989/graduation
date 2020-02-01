@@ -1,8 +1,7 @@
-package com.example.grad1.controller.lunch;
+package com.example.grad1.controller.admin;
 
 import com.example.grad1.domain.Lunch;
 import com.example.grad1.service.lunch.LunchService;
-import com.example.grad1.to.lunchTo.LunchTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,7 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-import static com.example.grad1.controller.lunch.LunchController.REST_URL;
+import static com.example.grad1.controller.admin.LunchController.REST_URL;
 import static com.example.grad1.util.ValidationUtil.assureIdConsistent;
 import static com.example.grad1.util.ValidationUtil.checkNew;
 

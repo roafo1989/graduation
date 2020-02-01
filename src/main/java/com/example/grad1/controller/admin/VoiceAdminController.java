@@ -1,23 +1,17 @@
-package com.example.grad1.controller.voice;
+package com.example.grad1.controller.admin;
 
-import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.Restaurant;
 import com.example.grad1.service.voice.VoiceService;
 import com.example.grad1.to.voiceTo.VoiceTo;
-import com.example.grad1.to.voiceTo.VoiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.grad1.controller.voice.VoiceAdminController.REST_URL;
+import static com.example.grad1.controller.admin.VoiceAdminController.REST_URL;
 
 @RestController
 @RequestMapping(value = REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)

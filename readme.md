@@ -22,7 +22,8 @@ It should contain the code and README.md with API documentation and curl command
 
 ### Голосование
 USER_ROLE:
-- POST /rest/voices - голосовать за ресторан по id
+- POST /rest/voices?restaurantId={restaurantId} - голосовать за ресторан по id
+- PUT /rest/voices?restaurantId={restaurantId} - изменить свой голос
 - GET /rest/voices?date={date} - получить свой голос на дату
 - GET /rest/voices - получить историю своих голосов
 

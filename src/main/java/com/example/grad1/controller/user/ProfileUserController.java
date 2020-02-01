@@ -1,5 +1,6 @@
 package com.example.grad1.controller.user;
 
+import com.example.grad1.controller.base.AbstractUserController;
 import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.User;
 import com.example.grad1.to.userTo.UserTo;

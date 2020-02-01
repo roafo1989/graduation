@@ -1,12 +1,13 @@
-package com.example.grad1.controller.restaurant;
+package com.example.grad1.controller.user;
 
+import com.example.grad1.controller.base.AbstractRestaurantController;
 import com.example.grad1.domain.Restaurant;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.example.grad1.controller.restaurant.UserRestaurantController.REST_URL;
+import static com.example.grad1.controller.user.UserRestaurantController.REST_URL;
 
 @RestController
 @RequestMapping(value = REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)

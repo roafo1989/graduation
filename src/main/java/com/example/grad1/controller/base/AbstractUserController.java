@@ -1,4 +1,4 @@
-package com.example.grad1.controller.user;
+package com.example.grad1.controller.base;
 
 import com.example.grad1.domain.User;
 import com.example.grad1.service.user.UserService;
@@ -47,7 +47,7 @@ public abstract class AbstractUserController {
         return service.update(userTo);
     }
 
-    User getByEmail(String email) {
+    public User getByEmail(String email) {
         return service.getByEmail(email);
     }
 }

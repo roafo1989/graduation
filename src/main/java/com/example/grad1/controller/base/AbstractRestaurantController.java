@@ -1,4 +1,4 @@
-package com.example.grad1.controller.restaurant;
+package com.example.grad1.controller.base;
 
 import com.example.grad1.domain.Restaurant;
 import com.example.grad1.service.restaurant.RestaurantService;
@@ -24,7 +24,7 @@ public class AbstractRestaurantController {
         return service.get(id);
     }
 
-    List<Restaurant> getAll() {
+    public List<Restaurant> getAll() {
         return service.getAll();
     }
 

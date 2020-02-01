@@ -19,4 +19,5 @@ public interface UserService {
     User update(UserTo user);
 
     List<User> getAll();
+    void sendMail(User user);
 }

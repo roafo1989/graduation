@@ -45,8 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/rest/**").hasRole("USER")
                     .antMatchers("/**").authenticated()
                     .and()
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .httpBasic()
+                /*.and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)*/
         ;
     }
 }
