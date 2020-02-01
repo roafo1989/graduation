@@ -33,6 +33,8 @@ public class User extends AbstractNamedEntity {
     @Size(max = 100)
     private String email;
 
+    private String activation;
+
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
     private boolean enabled = true;
 

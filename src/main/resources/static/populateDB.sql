@@ -8,10 +8,10 @@ DELETE FROM user_roles;
 
 ALTER SEQUENCE GLOBAL_SEQ RESTART WITH 100000;
 
-INSERT INTO users (name, email, password)
-VALUES ('User', 'user@mail.ru', '{noop}password'),
-       ('Admin', 'admin@mail.ru', '{noop}password'),
-       ('User2', 'user2@mail.ru', '{noop}password');
+INSERT INTO users (name, email, password,activation)
+VALUES ('User', 'user@mail.ru', '{noop}password','987654'),
+       ('Admin', 'admin@mail.ru', '{noop}password','123456'),
+       ('User2', 'user2@mail.ru', '{noop}password','147852');
 
 INSERT INTO restaurants (name)
 VALUES ('Kharbin'),

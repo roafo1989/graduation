@@ -5,6 +5,8 @@ import com.example.grad1.service.user.UserService;
 import com.example.grad1.to.userTo.UserTo;
 import com.example.grad1.to.userTo.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -50,4 +52,5 @@ public abstract class AbstractUserController {
     public User getByEmail(String email) {
         return service.getByEmail(email);
     }
+
 }

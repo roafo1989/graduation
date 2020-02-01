@@ -13,6 +13,7 @@ CREATE TABLE users
     id         INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name       VARCHAR(255) NOT NULL,
     email      VARCHAR(255) NOT NULL,
+    activation VARCHAR(255),
     password   VARCHAR(255) NOT NULL,
     registered DATE DEFAULT now(),
     enabled    BOOLEAN   DEFAULT TRUE,
@@ -57,8 +58,8 @@ CREATE TABLE user_roles
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
-INSERT INTO users (name, email, password)
-VALUES ('Admin', 'admin@mail.ru', '{noop}password');
+INSERT INTO users (name, email, password, activation)
+VALUES ('Admin', 'admin@mail.ru', '{noop}password', '12345');
 
 INSERT INTO user_roles (role, user_id) VALUES
 ('ROLE_USER', 100000),

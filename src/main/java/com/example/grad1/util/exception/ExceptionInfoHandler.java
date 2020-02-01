@@ -52,13 +52,11 @@ public class ExceptionInfoHandler {
         return new ErrorInfo(req.getRequestURL(), e);
     }
 
-/*    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    @ExceptionHandler(EmptyResultDataAccessException.class)
-    public ErrorInfo throwException(HttpServletRequest req, EmptyResultDataAccessException e) {
-        String errorMessage = e.getMessage();
-        String toReplace = e.getLocalizedMessage().substring(2, errorMessage.lastIndexOf('.') + 1);
-        return new ErrorInfo(req.getRequestURL(), errorMessage.replaceAll(toReplace, " "));
-    }*/
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundActivationException.class)
+    public ErrorInfo notFoundActivationCode(HttpServletRequest req, NullPointerException e){
+        return new ErrorInfo(req.getRequestURL(), e);
+    }
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(NullPointerException.class)

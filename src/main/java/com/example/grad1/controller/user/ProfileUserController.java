@@ -5,10 +5,12 @@ import com.example.grad1.controller.security.AuthorizedUser;
 import com.example.grad1.domain.User;
 import com.example.grad1.to.userTo.UserTo;
 import com.example.grad1.to.userTo.UserUtil;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -54,6 +56,13 @@ public class ProfileUserController extends AbstractUserController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@AuthenticationPrincipal AuthorizedUser authorizedUser) {
         super.delete(authorizedUser.getUserTo().getId());
+    }
+
+
+    @GetMapping(value = "/activate/{code}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public User activate(@PathVariable String code) {
+        return service.activateUser(code);
     }
 
 }
